@@ -39,23 +39,29 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.IOException;
 
+import butterknife.BindView;
+
 public class MainActivity extends AppCompatActivity {
 
-    // TODO (2): Replace all View declarations with Butterknife annotations
+    // DONE (2): Replace all View declarations with Butterknife annotations
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_STORAGE_PERMISSION = 1;
 
     private static final String FILE_PROVIDER_AUTHORITY = "com.example.android.fileprovider";
 
-    private ImageView mImageView;
-
-    private Button mEmojifyButton;
-    private FloatingActionButton mShareFab;
-    private FloatingActionButton mSaveFab;
-    private FloatingActionButton mClearFab;
-
-    private TextView mTitleTextView;
+    //private ImageView mImageView;
+    @BindView(R2.id.image_view) TextView mImageView;
+    // private Button mEmojifyButton;
+    @BindView(R2.id.emojify_button) Button mEmojifyButton;
+    // private FloatingActionButton mShareFab;
+    @BindView(R2.id.share_button) FloatingActionButton mShareFab;
+    // private FloatingActionButton mSaveFab;
+    @BindView(R2.id.save_button) FloatingActionButton mSaveFab;
+    // private FloatingActionButton mClearFab;
+    @BindView(R2.id.clear_button) FloatingActionButton mClearFab;
+    // private TextView mTitleTextView;
+    @BindView(R2.id.title_text_view) TextView mTitleTextView;;
 
     private String mTempPhotoPath;
 
@@ -67,14 +73,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // TODO (3): Replace the findViewById calls with the Butterknife data binding
+        // DONE (3): Replace the findViewById calls with the Butterknife data binding
         // Bind the views
-        mImageView = (ImageView) findViewById(R.id.image_view);
-        mEmojifyButton = (Button) findViewById(R.id.emojify_button);
-        mShareFab = (FloatingActionButton) findViewById(R.id.share_button);
-        mSaveFab = (FloatingActionButton) findViewById(R.id.save_button);
-        mClearFab = (FloatingActionButton) findViewById(R.id.clear_button);
-        mTitleTextView = (TextView) findViewById(R.id.title_text_view);
+
+        ButterKnife.bind(this);
+
+//        mImageView = (ImageView) findViewById(R.id.image_view);
+//        mEmojifyButton = (Button) findViewById(R.id.emojify_button);
+//        mShareFab = (FloatingActionButton) findViewById(R.id.share_button);
+//        mSaveFab = (FloatingActionButton) findViewById(R.id.save_button);
+//        mClearFab = (FloatingActionButton) findViewById(R.id.clear_button);
+//        mTitleTextView = (TextView) findViewById(R.id.title_text_view);
     }
 
     /**
@@ -189,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
         mResultsBitmap = Emojifier.detectFacesandOverlayEmoji(this, mResultsBitmap);
 
         // Set the new bitmap to the ImageView
-        mImageView.setImageBitmap(mResultsBitmap);
+//        mImageView.setImageBitmap(mResultsBitmap);
     }
 
 
@@ -230,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void clearImage(View view) {
         // Clear the image and toggle the view visibility
-        mImageView.setImageResource(0);
+//        mImageView.setImageResource(0);
         mEmojifyButton.setVisibility(View.VISIBLE);
         mTitleTextView.setVisibility(View.VISIBLE);
         mShareFab.setVisibility(View.GONE);
